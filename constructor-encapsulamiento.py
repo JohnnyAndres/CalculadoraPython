@@ -28,5 +28,5 @@ print("*************A continuación creamos el segundo objeto******************"
 miCoche2 = Coche()
 print(miCoche2.arrancarCoche(False))
 miCoche2.__ruedas=5 #Modificamos el estado de las ruedas del objeto: Para evitar que una propiedad no se pueda
-#modificar desde fuera de la clase se debe encapsular la propiedad cuando sea necesario. __self
+#modificar desde fuera de la clase se debe encapsular la propiedad cuando sea necesario. self.__propiedad
 miCoche2.estado()

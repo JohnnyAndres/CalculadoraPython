@@ -27,9 +27,25 @@ miFrame.config(bd="35") #Ancho Borde
 miFrame.config(relief="groove") #Tipo de borde
 miFrame.config(cursor="hand2")
 
+#Todo lo que se aplica al frame se puede aplicar tambien a la raiz
+
+#Class Label nos permite colocar texto estatico
+# sintaxis de label -> variableLabel = Label(contenedor, opciones)
+
+
+
+miLabel =  Label(miFrame, text="Hola Interfaz Grafica")
+miLabel.place(x=225, y= 0) #Ubica el texto en cualquier lugar de la interfaz
+
+
+#Se puede abreviar el Label (Si no se va a utilizar nuevamente la variable miLabel) de la siguiente forma
+Label(miFrame, text="Hola Interfaz Otra vez", fg="blue", font=("Comic Sans MS", 16)).place(x=225, y=25)
+
+#Usar imagenes con Label
+'''miImagen = PhotoImage(file="./firm-23.png")
+Label(miFrame, image=miImagen).place(x=225, y=50)'''
+
+
 raiz.mainloop()  #Se llama al metodo mainloop es necesario para que la ventana este activa, funciona como un bucle infinito. 
  #El metodo mainloop debe estar siempre al final
 #Se coloca al archivo extension pyw para que no se abra el ejecutable con la consola de comandos por detras
-
-#Todo lo que se aplica al frame se puede aplicar tambien a la raiz
-

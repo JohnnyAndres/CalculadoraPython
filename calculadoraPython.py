@@ -11,6 +11,8 @@ miFrame.pack()
 userInput = StringVar()
 selectedOperation = ""
 result = 0
+firstOper = 0
+makeOper = False
 
 #**************PANTALLA*****************
 screen=Entry(miFrame, textvariable=userInput)
@@ -26,12 +28,26 @@ class button():
 
     def showNumberInput(self):
         global selectedOperation
+        global firstOper
+        global makeOper
 
-        if (selectedOperation != ""):
+
+        if (selectedOperation == ""):
             userInput.set(self.key)
             selectedOperation = ""
-        else:
-            userInput.set(userInput.get() + self.key)
+        elif(selectedOperation == "+"):
+            userInput.set(self.key)
+            selectedOperation = "+"
+        elif (selectedOperation == "/"):
+            userInput.set(self.key)
+            selectedOperation = "/"
+        elif (selectedOperation == "x"):
+            userInput.set(self.key)
+            selectedOperation = "x"
+        elif (selectedOperation == "-"):
+            userInput.set(self.key)
+            selectedOperation = "-"         
+        
 
     def createNumberButton(self):
         button=Button(miFrame, text=self.key, width=3, command=self.showNumberInput)
@@ -45,23 +61,40 @@ class operButton(button):
     def makeOperation(self, num):
         global selectedOperation
         global result 
-        if (self.key == "/"):
-            selectedOperation = "/" 
-             
-        elif (self.key == "x"):
-            selectedOperation = "x" 
+        global firstOper
+        global makeOper
 
-        if (self.key == "-"):
-            selectedOperation = "-" 
+        if (makeOper == False):
+            firstOper = int(num)
+            makeOper = True
 
         if (self.key == "+"):
-            selectedOperation = "+"  
-            result += int(num)
-            userInput.set(result)
+            if (makeOper == True):
+                selectedOperation = "+"  
+                result += int(num)
+                userInput.set(result)
 
+        if (self.key == "-"):
+            selectedOperation = "-"  
+        if (self.key == "x"):
+            selectedOperation = "x" 
+        if (self.key == "/"):
+            selectedOperation = "/"         
+                 
         if (self.key == "="):
             userInput.set(result+int(num))
             result = 0
+            if (selectedOperation == "-"):
+                result = firstOper - int(num) 
+                userInput.set(result)
+            if (selectedOperation == "x"):
+                result = firstOper * int(num) 
+                userInput.set(result)
+            if (selectedOperation == "/"):
+                result = firstOper / int(num) 
+                userInput.set(int(result))
+            makeOper = False    
+
 
     def createOperButton(self):
         button=Button(miFrame, text=self.key, width=3, command=lambda:self.makeOperation(userInput.get()))
